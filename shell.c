@@ -7,10 +7,12 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+
 void myPrint(char *msg)
 {
     write(STDOUT_FILENO, msg, strlen(msg));
 }
+
 int empty(char *cmd){
   for (int i = 0; i < strlen(cmd); i++){
     if (cmd[i] != ' ' && cmd[i] != '\t' && cmd[i] != '\n' && cmd[i] != '\0' && cmd[i] != '\r' && cmd[i] != '\v' && cmd[i] != '\f'){
@@ -19,6 +21,7 @@ int empty(char *cmd){
   }
   return 1;
 }
+
 void basicCommand(char *subtoken, char *savep2){  
   if (strcmp(subtoken, "exit") == 0){
     if (strtok_r(NULL, " \t\n\r\v\f", &savep2) != NULL){
@@ -58,6 +61,7 @@ void basicCommand(char *subtoken, char *savep2){
   }
   return;
 }
+
 void advredirect(char *token, char **execArgs){
   char *subtoken3, *subtoken4;
   char *savep3, *savep4;
@@ -135,6 +139,7 @@ void advredirect(char *token, char **execArgs){
   }
   return;
 }
+
 void redirect(char *token, char **execArgs){
   char *subtoken3, *subtoken4;
   char *savep3, *savep4;
@@ -184,6 +189,7 @@ void redirect(char *token, char **execArgs){
   }
   return;
 }
+
 void parse(char *commands){
   char *savep1, *savep2;
   char *token = strtok_r(commands, ";", &savep1);
@@ -244,6 +250,7 @@ void parse(char *commands){
   }
   return;
 }
+
 int main(int argc, char *argv[]) {
     char cmd_buff[514];
     char *pinput;
